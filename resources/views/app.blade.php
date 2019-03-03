@@ -6,11 +6,12 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <title>Tabtracker</title>
-
     </head>
     <body>
         <div id="app">
-            <router-view></router-view>
+            <v-app>
+                <router-view></router-view>
+            </v-app>
         </div>
     </body>
 

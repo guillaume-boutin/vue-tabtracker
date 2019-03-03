@@ -1,33 +1,56 @@
 <template>
-    <div>
-        <h1>Register</h1>
+    <v-layout>
+        <v-flex xs6 offset-xs3>
+            <div class="white elevation-2">
 
-        <input
-            type="email"
-            name="email"
-            placeholder="Email"
-            v-model="email" />
-        <div v-if="errors.email.length" class="error" v-html="errors.email" />
-        <br>
-        <input
-            type="password"
-            name="password"
-            placeholder="Password"
-            v-model="password" />
-        <div v-if="errors.password.length" class="error" v-html="errors.password" />
-        <br>
-        <input
-            type="password"
-            name="password_confirmation"
-            placeholder="Confirm password"
-            v-model="password_confirmation" />
-        <br>
-        <button
-            @click="register">
-            Register
-        </button>
+                <v-toolbar flat dense dark class="light-blue">
+                    <v-toolbar-title>
+                        Register
+                    </v-toolbar-title>
+                </v-toolbar>
 
-    </div>
+                <div class="pt-2 pr-4 pb-2 pl-4">
+
+                    <v-text-field
+                        type="email"
+                        name="email"
+                        label="Email"
+                        v-model="email" />
+                    <!-- <input
+                        type="email"
+                        name="email"
+                        placeholder="Email"
+                        v-model="email" /> -->
+                    <div v-if="errors.email.length" class="error" v-html="errors.email" />
+
+
+                    <v-text-field
+                        type="password"
+                        name="password"
+                        label="Password"
+                        v-model="password" />
+
+                    <div v-if="errors.password.length" class="error" v-html="errors.password" />
+
+
+                    <v-text-field
+                        type="password"
+                        name="password_confirmation"
+                        label="Confirm password"
+                        v-model="password_confirmation" />
+
+
+                    <v-btn
+                        dark
+                        class="light-blue"
+                        @click="register">
+                        Register
+                    </v-btn>
+                </div>
+
+            </div>
+        </v-flex>
+    </v-layout>
 </template>
 
 <script>
@@ -66,8 +89,6 @@
 </script>
 
 <style scoped>
-    .error {
-        color: red;
-    }
+
 </style>
 
