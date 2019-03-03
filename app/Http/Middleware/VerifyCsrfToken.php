@@ -2,6 +2,8 @@
 
 namespace App\Http\Middleware;
 
+use \Closure;
+use Illuminate\Session\TokenMismatchException;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken as Middleware;
 
 class VerifyCsrfToken extends Middleware
@@ -11,7 +13,7 @@ class VerifyCsrfToken extends Middleware
      *
      * @var bool
      */
-    protected $addHttpCookie = env('APP_ENV') !== 'local';
+    protected $addHttpCookie = true;
 
     /**
      * The URIs that should be excluded from CSRF verification.
@@ -21,4 +23,33 @@ class VerifyCsrfToken extends Middleware
     protected $except = [
         //
     ];
+
+    /**
+     * Handle an incoming request.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Closure  $next
+     * @return mixed
+     *
+     * @throws \Illuminate\Session\TokenMismatchException
+     */
+    public function handle($request, Closure $next)
+    {
+        $isLocal = env('APP_ENV') === 'local';
+        if (
+            $isLocal ||
+            $this->isReading($request) ||
+            $this->runningUnitTests() ||
+            $this->inExceptArray($request) ||
+            $this->tokensMatch($request)
+        ) {
+            return tap($next($request), function ($response) use ($request) {
+                if ($this->shouldAddXsrfTokenCookie()) {
+                    $this->addCookieToResponse($request, $response);
+                }
+            });
+        }
+
+        throw new TokenMismatchException;
+    }
 }
