@@ -84,7 +84,6 @@ class RegisterController extends Controller
 
         $this->guard()->login($user);
 
-        return $this->registered($request, $user) ?
-            $user : ['error' => "couldn't register"];
+        return $user;
     }
 }

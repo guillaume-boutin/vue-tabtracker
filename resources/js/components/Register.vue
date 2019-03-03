@@ -7,12 +7,15 @@
             name="email"
             placeholder="Email"
             v-model="email" />
+        <div v-if="errors.email.length" class="error" v-html="errors.email" />
         <br>
         <input
             type="password"
             name="password"
             placeholder="Password"
             v-model="password" />
+        <div v-if="errors.password.length" class="error" v-html="errors.password" />
+        <br>
         <input
             type="password"
             name="password_confirmation"
@@ -35,17 +38,36 @@
             return {
                 email: '',
                 password: '',
-                password_confirmation: ''
+                password_confirmation: '',
+                errors: {
+                    email: '',
+                    password: ''
+                }
             };
         },
 
         methods: {
-            async register (e) {
-                let { email, password, password_confirmation } = this;
-                const response = await AuthenticationService.register({email, password, password_confirmation});
+            async register () {
+                try {
+                    let { email, password, password_confirmation } = this;
+                    const response = await AuthenticationService.register({email, password, password_confirmation});
+                } catch (error) {
+                    this.registerErrors(error.response.data.errors);
+                }
+            },
 
-                console.log(response.data)
+            registerErrors (errors) {
+                for (let key in errors) {
+                    this.errors[key] = errors[key].join('; ');
+                }
             }
         }
     }
 </script>
+
+<style scoped>
+    .error {
+        color: red;
+    }
+</style>
+

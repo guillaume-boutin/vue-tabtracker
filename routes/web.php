@@ -11,7 +11,9 @@
 |
 */
 
-Route::post('/ajax/register', 'Auth\RegisterController@register');
+Route::group(['middleware' => 'web', 'prefix' => 'ajax'], function () {
+    Route::post('register', 'Auth\RegisterController@register');
+});
 
 Route::get('/{any}', function () {
     return view('app');
