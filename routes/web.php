@@ -11,6 +11,8 @@
 |
 */
 
+Route::post('/ajax/register', 'Auth\RegisterController@register');
+
 Route::get('/{any}', function () {
     return view('app');
 })->where('any', '.*');
