@@ -54,9 +54,8 @@
 </template>
 
 <script>
-    import AuthenticationService from '../services/AuthenticationService'
+    import AuthenticationService from '../../services/AuthenticationService'
     export default {
-
         data () {
             return {
                 email: '',
