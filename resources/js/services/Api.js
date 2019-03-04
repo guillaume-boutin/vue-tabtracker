@@ -1,7 +1,5 @@
 import axios from 'axios'
 
-export default () => {
-    return axios.create({
-        baseURL: 'http://tabtracker.local/ajax'
-    });
-}
+export default axios.create({
+    baseURL: 'http://tabtracker.local/ajax'
+});
