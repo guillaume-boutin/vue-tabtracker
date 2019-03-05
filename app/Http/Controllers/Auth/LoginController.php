@@ -51,6 +51,6 @@ class LoginController extends Controller
 
         $this->clearLoginAttempts($request);
 
-        return $this->guard()->user();
+        return ['user' => $this->guard()->user()];
     }
 }

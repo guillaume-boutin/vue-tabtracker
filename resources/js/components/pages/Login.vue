@@ -56,11 +56,11 @@
                 try {
                     let { email, password } = this;
                     const response = await AuthenticationService.login({email, password });
+                    this.$store.dispatch('setUser', response.data.user);
                 } catch (error) {
                     this.registerErrors(error.response.data.errors);
                 }
             },
-
             registerErrors (errors) {
                 for (let key in errors) {
                     this.errors[key] = errors[key].join('; ');

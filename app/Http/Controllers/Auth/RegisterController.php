@@ -84,6 +84,6 @@ class RegisterController extends Controller
 
         $this->guard()->login($user);
 
-        return $user;
+        return compact('user');
     }
 }

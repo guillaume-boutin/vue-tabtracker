@@ -2,7 +2,6 @@
     <v-layout>
         <v-flex xs6 offset-xs3>
             <div class="white elevation-2">
-
                 <v-toolbar flat dense dark class="light-blue">
                     <v-toolbar-title>
                         Register
@@ -10,19 +9,13 @@
                 </v-toolbar>
 
                 <div class="pt-2 pr-4 pb-2 pl-4">
-
                     <v-text-field
                         type="email"
                         name="email"
                         label="Email"
                         v-model="email" />
-                    <!-- <input
-                        type="email"
-                        name="email"
-                        placeholder="Email"
-                        v-model="email" /> -->
-                    <div v-if="errors.email.length" class="error" v-html="errors.email" />
 
+                    <div v-if="errors.email.length" class="error" v-html="errors.email" />
 
                     <v-text-field
                         type="password"
@@ -32,13 +25,11 @@
 
                     <div v-if="errors.password.length" class="error" v-html="errors.password" />
 
-
                     <v-text-field
                         type="password"
                         name="password_confirmation"
                         label="Confirm password"
                         v-model="password_confirmation" />
-
 
                     <v-btn
                         dark
@@ -47,7 +38,6 @@
                         Register
                     </v-btn>
                 </div>
-
             </div>
         </v-flex>
     </v-layout>
@@ -73,6 +63,7 @@
                 try {
                     let { email, password, password_confirmation } = this;
                     const response = await AuthenticationService.register({email, password, password_confirmation});
+                    this.$store.dispatch('setUser', response.data.user);
                 } catch (error) {
                     this.registerErrors(error.response.data.errors);
                 }

@@ -15,11 +15,21 @@
         <v-spacer></v-spacer>
 
         <v-toolbar-items>
-            <v-btn flat dark tag="button" to="login">
+            <v-btn
+                flat
+                dark
+                tag="button"
+                to="login"
+                v-if="!$store.state.user">
                 Login
             </v-btn>
 
-            <v-btn flat dark tag="button" to="register">
+            <v-btn
+                flat
+                dark
+                tag="button"
+                to="register"
+                v-if="!$store.state.user">
                 Sign Up
             </v-btn>
         </v-toolbar-items>
