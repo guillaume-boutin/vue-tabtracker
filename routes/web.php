@@ -13,6 +13,7 @@
 
 Route::group(['middleware' => 'web', 'prefix' => 'ajax'], function () {
     Route::post('register', 'Auth\RegisterController@register');
+    Route::post('login', 'Auth\LoginController@login');
 });
 
 Route::get('/{any}', function () {
