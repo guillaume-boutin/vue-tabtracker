@@ -32,12 +32,26 @@
                 v-if="!$store.state.user">
                 Sign Up
             </v-btn>
+
+            <v-btn
+                flat
+                dark
+                v-else
+                @click="logout">
+                Logout
+            </v-btn>
         </v-toolbar-items>
     </v-toolbar>
 </template>
 
 <script>
-    export default {}
+    export default {
+        methods: {
+            logout () {
+                console.log('logging out!');
+            }
+        }
+    }
 </script>
 
 <style scoped>
