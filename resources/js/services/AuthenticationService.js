@@ -7,5 +7,9 @@ export default {
 
     login (credentials) {
         return Api.post('login', credentials);
+    },
+
+    ping () {
+        return Api.get('me');
     }
 }

@@ -52,15 +52,17 @@
         },
 
         methods: {
-            async login () {
-                try {
-                    let { email, password } = this;
-                    const response = await AuthenticationService.login({email, password });
-                    this.$store.dispatch('setUser', response.data.user);
-                } catch (error) {
-                    this.registerErrors(error.response.data.errors);
-                }
+            login () {
+                let { email, password } = this;
+                this.$store.dispatch('login', {email, password})
+                    .then(() => {
+                        this.router.push({name: 'home'})
+                    })
+                    .catch(error => {
+                        this.registerErrors(error.response.data.errors);
+                    });
             },
+            
             registerErrors (errors) {
                 for (let key in errors) {
                     this.errors[key] = errors[key].join('; ');

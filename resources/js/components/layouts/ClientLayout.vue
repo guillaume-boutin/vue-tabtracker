@@ -10,11 +10,12 @@
 
 <script>
     import PageHeader from '../partials/Header';
+    import Auth from '../../services/AuthenticationService';
 
     export default {
         components: {
             PageHeader
-        }
+        },
     }
 </script>
 

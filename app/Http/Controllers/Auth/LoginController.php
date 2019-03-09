@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -52,5 +53,11 @@ class LoginController extends Controller
         $this->clearLoginAttempts($request);
 
         return ['user' => $this->guard()->user()];
+    }
+
+    public function ping()
+    {
+        die('<pre>'.print_r('HERE', true).'</pre>');
+        return ['user'=> Auth::user()];
     }
 }
