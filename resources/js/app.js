@@ -8,6 +8,7 @@ import { sync } from 'vuex-router-sync';
 import StoreData from './store/store';
 import 'vuetify/dist/vuetify.min.css';
 import AuthMiddleware from './router/middlewares/AuthMiddleware';
+import GuestMiddleware from './router/middlewares/GuestMiddleware';
 
 window.Vue = Vue;
 
@@ -25,10 +26,11 @@ const store = new Vuex.Store(StoreData);
 sync(store, router);
 
 router.beforeEach((to, from, next) => {
-    // if (to.matched.some(record => record.meta.requiresAuth)) {
+    if (to.matched.some(record => record.meta.auth)) {
         return AuthMiddleware(to, from, next, store);
-    // }
+    }
 
+    return GuestMiddleware(to, from, next, store);
 });
 
 new Vue({

@@ -9,6 +9,10 @@ export default {
         return Api.post('login', credentials);
     },
 
+    logout () {
+        return Api.post('logout');
+    },
+
     ping () {
         return Api.get('me');
     }

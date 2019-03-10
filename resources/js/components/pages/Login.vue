@@ -56,13 +56,13 @@
                 let { email, password } = this;
                 this.$store.dispatch('login', {email, password})
                     .then(() => {
-                        this.router.push({name: 'home'})
+                        this.$router.push({name: 'home'})
                     })
                     .catch(error => {
                         this.registerErrors(error.response.data.errors);
                     });
             },
-            
+
             registerErrors (errors) {
                 for (let key in errors) {
                     this.errors[key] = errors[key].join('; ');

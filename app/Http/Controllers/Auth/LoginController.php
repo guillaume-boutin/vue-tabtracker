@@ -55,9 +55,18 @@ class LoginController extends Controller
         return ['user' => $this->guard()->user()];
     }
 
-    public function ping()
+    /**
+     * Log the user out of the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function logout(Request $request)
     {
-        die('<pre>'.print_r('HERE', true).'</pre>');
-        return ['user'=> Auth::user()];
+        $this->guard()->logout();
+
+        $request->session()->invalidate();
+
+        return [];
     }
 }

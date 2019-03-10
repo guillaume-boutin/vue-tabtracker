@@ -48,7 +48,10 @@
     export default {
         methods: {
             logout () {
-                console.log('logging out!');
+                this.$store.dispatch('logout')
+                    .then(() => {
+                        this.$router.push({name: 'login'})
+                    });
             }
         }
     }

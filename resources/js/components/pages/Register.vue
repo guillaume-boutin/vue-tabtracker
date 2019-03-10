@@ -59,14 +59,15 @@
         },
 
         methods: {
-            async register () {
-                try {
-                    let { email, password, password_confirmation } = this;
-                    const response = await AuthenticationService.register({email, password, password_confirmation});
-                    this.$store.dispatch('setUser', response.data.user);
-                } catch (error) {
-                    this.registerErrors(error.response.data.errors);
-                }
+            register () {
+                let { email, password, password_confirmation } = this;
+                this.$store.dispatch('register', {email, password, password_confirmation})
+                    .then(() => {
+                        this.$router.push({name: 'home'})
+                    })
+                    .catch(error => {
+                        this.registerErrors(error.response.data.errors);
+                    });
             },
 
             registerErrors (errors) {
