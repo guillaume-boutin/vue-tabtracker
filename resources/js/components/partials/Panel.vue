@@ -6,7 +6,7 @@
             </v-toolbar-title>
         </v-toolbar>
 
-        <div class="pt-2 pr-4 pb-2 pl-4">
+        <div class="pt-2 pr-4 pb-2 pl-4 text-xs-center">
             <slot></slot>
         </div>
     </div>

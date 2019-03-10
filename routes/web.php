@@ -16,6 +16,8 @@ Route::group(['middleware' => 'web', 'prefix' => 'ajax'], function () {
     Route::post('register', 'Auth\RegisterController@register');
     Route::post('login', 'Auth\LoginController@login');
     Route::post('logout', 'Auth\LoginController@logout');
+
+    Route::get('songs', 'SongsController@index');
 });
 
 Route::get('/{any}', function () {
