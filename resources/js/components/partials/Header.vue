@@ -5,12 +5,15 @@
             Tab Tracker
         </v-toolbar-title>
 
-        <!-- TODO: Implement Me! -->
-        <!-- <v-toolbar-items>
-            <v-btn flat dark>
+        <v-toolbar-items>
+            <v-btn
+                flat
+                dark
+                tag="button"
+                :to="{name: 'songs'}">
                 Browse
             </v-btn>
-        </v-toolbar-items> -->
+        </v-toolbar-items>
 
         <v-spacer></v-spacer>
 
@@ -19,7 +22,7 @@
                 flat
                 dark
                 tag="button"
-                to="login"
+                :to="{name: 'login'}"
                 v-if="!$store.state.user">
                 Login
             </v-btn>
