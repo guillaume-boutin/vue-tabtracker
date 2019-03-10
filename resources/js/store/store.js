@@ -8,15 +8,10 @@ export default {
             return state.user
         }
     },
-    mutations: {
-        setUser (state, user) {
-            state.user = user;
-        },
-
-        setSongs (state, songs) {
-            state.songs = songs;
-        }
-    },
+    mutations: Object.assign(
+        require('./mutations/UsersMutations').default,
+        require('./mutations/SongsMutations').default
+    ),
 
     actions: Object.assign({},
         require('./actions/AuthActions').default,

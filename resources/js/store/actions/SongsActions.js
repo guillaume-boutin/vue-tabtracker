@@ -10,5 +10,16 @@ export default {
                 })
                 .catch(err => {reject(err)});
         });
+    },
+
+    createSong ({ commit }, song) {
+        return new Promise((resolve, reject) => {
+            Api.post('songs', song)
+                .then((res) => {
+                    commit('addSong', res.data.song);
+                    resolve(res.data.song);
+                })
+                .catch(err => {reject(err);});
+        });
     }
 }
